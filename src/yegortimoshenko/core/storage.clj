@@ -25,4 +25,4 @@
 
 (defn withdraw [k]
   (try (read-bytes (.getByteArray (preferences k) *key* *default*))
-       (catch IOException _ nil)))
+       (catch IOException _)))

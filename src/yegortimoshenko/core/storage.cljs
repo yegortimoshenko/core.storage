@@ -20,4 +20,4 @@
 
 (defn withdraw [k]
   (try (read-string (.get storage k))
-       (catch js/SyntaxError _ nil)))
+       (catch js/SyntaxError _)))

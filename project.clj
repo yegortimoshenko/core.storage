@@ -1,4 +1,4 @@
-(defproject com.yegortimoshenko/core.storage "20170415.133341"
+(defproject com.yegortimoshenko/core.storage "20170415.133751"
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.229"]
                  [com.cognitect/transit-cljs "0.8.239"]]
