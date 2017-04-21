@@ -1,7 +1,8 @@
 (ns yegortimoshenko.core.storage
-  (:import [java.io ByteArrayInputStream ByteArrayOutputStream
-            ObjectInputStream ObjectOutputStream IOException]
-           [java.util.prefs Preferences]))
+  (:refer-clojure :exclude [load])
+  (:import (java.io ByteArrayInputStream ByteArrayOutputStream
+                    ObjectInputStream ObjectOutputStream IOException)
+           (java.util.prefs Preferences)))
 
 (defn read-bytes ^Object [^bytes bs]
   (with-open [in (ByteArrayInputStream. bs)
@@ -15,14 +16,14 @@
     (.toByteArray out)))
 
 (def ^:dynamic *default* (write-bytes nil))
-(def ^:dynamic *key* "__storage")
+(def ^:dynamic *node* "/com/yegortimoshenko/core/storage")
 
 (defn ^:private preferences ^Preferences [node]
   (-> (Preferences/userRoot) (.node node)))
 
 (defn save [k v]
-  (.putByteArray (preferences k) *key* (write-bytes v)))
+  (.putByteArray (preferences *node*) (pr-str k) (write-bytes v)))
 
 (defn load [k]
-  (try (read-bytes (.getByteArray (preferences k) *key* *default*))
+  (try (read-bytes (.getByteArray (preferences *node*) (pr-str k) *default*))
        (catch IOException _)))

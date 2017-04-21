@@ -16,8 +16,8 @@
   (Storage. (HTML5LocalStorage.)))
 
 (defn save [k v]
-  (.set storage k (write-string v)))
+  (.set storage (pr-str k) (write-string v)))
 
 (defn load [k]
-  (try (read-string (.get storage k))
+  (try (read-string (.get storage (pr-str k)))
        (catch js/SyntaxError _)))
