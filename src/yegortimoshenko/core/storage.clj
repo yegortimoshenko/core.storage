@@ -20,9 +20,9 @@
 (defn ^:private preferences ^Preferences [node]
   (-> (Preferences/userRoot) (.node node)))
 
-(defn deposit [k v]
+(defn save [k v]
   (.putByteArray (preferences k) *key* (write-bytes v)))
 
-(defn withdraw [k]
+(defn load [k]
   (try (read-bytes (.getByteArray (preferences k) *key* *default*))
        (catch IOException _)))

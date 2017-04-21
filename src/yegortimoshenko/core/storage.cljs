@@ -15,9 +15,9 @@
 (def ^:private storage
   (Storage. (HTML5LocalStorage.)))
 
-(defn deposit [k v]
+(defn save [k v]
   (.set storage k (write-string v)))
 
-(defn withdraw [k]
+(defn load [k]
   (try (read-string (.get storage k))
        (catch js/SyntaxError _)))
