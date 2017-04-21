@@ -16,7 +16,7 @@
     (.toByteArray out)))
 
 (def ^:dynamic *default* (write-bytes nil))
-(def ^:dynamic *node-path* "/com/yegortimoshenko/core/storage")
+(def ^:dynamic *node-path* "/com/yegortimoshenko/core.storage")
 
 (defn ^:private preferences ^Preferences [path]
   (-> (Preferences/userRoot) (.node path)))
